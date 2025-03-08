@@ -1,4 +1,5 @@
-# elements: a program to make memorizing the elements of the periodic table easy
+#!/usr/local/bin/python3
+# Elements: a program to make memorizing the elements of the periodic table easy
 
 import os
 import time
