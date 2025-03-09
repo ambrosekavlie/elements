@@ -170,5 +170,31 @@ if __name__ == "__main__":
     time2 = time.time()
     # get time that the test took
     time_taken = time2 - time1
+    
+    # print you win message
     you_win()
-    print(f"\nYou took {time_taken} seconds to complete the test. Good job!")
+    
+    # time and highscore logic below:
+    
+    # try and catch, if file doesn't exist just count the score as highscore
+    try:
+        # open file
+        with open("highscore", 'r') as highscore_file:
+            highscore = (float)(highscore_file.read())
+        if time_taken < highscore:
+            # if time taken is less than highscore, set new highscore and print highscore message
+            highscore = time_taken
+            with open("highscore", 'w') as highscore_file:
+                highscore_file.write((str)(highscore))
+            print(f"\nHIGHSCORE! You took {time_taken} seconds to complete the test.")
+        else:
+            # else, print normal message that is not highscore
+            # also print your previos highscore
+            print(f"\nYou took {time_taken} seconds to complete the test. Good job!")
+            print(f"Previous highscore: {highscore}")
+    except FileNotFoundError:
+        # if file not found, print highscore things because t'is first score
+        highscore = time_taken
+        with open("highscore", 'w') as highscore_file:
+            highscore_file.write((str)(highscore))
+        print(f"\nHIGHSCORE! You took {time_taken} seconds to complete the test.")
