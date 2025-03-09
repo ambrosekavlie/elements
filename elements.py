@@ -6,6 +6,7 @@ import time
 
 # SETTINGS
 SET_BACK = 5 # the amount of elements it will bring you back if you get one wrong
+HARDCORE_MODE = False # if hardcore mode is true, if you mess up it restarts you at hydrogen again
 START_ELEMENT = 1 # the element you start at. 1 is Hydrogen.
 YOU_WIN_MSG = "You memorized all 118 elements!" # the message displayed at the end if you win
 YOU_WIN_SPEED = 0.02 # the speed at which the message is printed. Lower is faster since it is the time slept between prints.
@@ -154,7 +155,12 @@ if __name__ == "__main__":
             # if not correct move back SET_BACK elements and clear screen. Display incorrect message.
             input(f"Incorrect, the answer is {element}.")
             os.system("clear")
-            i -= SET_BACK
+            # if hardcore mode is true, reset to 0.
+            if HARDCORE_MODE:
+                i = 0
+            else:
+                # if false, go back SET_BACK elements
+                i -= SET_BACK
             # make sure i is > 0 in case it sets back before Hydrogen we don't go farther than that
             if i <= 0:
                 i = 0
