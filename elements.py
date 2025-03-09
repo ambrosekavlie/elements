@@ -4,11 +4,12 @@
 import os
 import time
 
-# the amount of elements it will bring you back if you get one wrong
-SET_BACK = 5
-START_ELEMENT = 1
-YOU_WIN_MSG = "You memorized all 118 elements!"
-YOU_WIN_SPEED = 0.02
+# SETTINGS
+SET_BACK = 5 # the amount of elements it will bring you back if you get one wrong
+START_ELEMENT = 1 # the element you start at. 1 is Hydrogen.
+YOU_WIN_MSG = "You memorized all 118 elements!" # the message displayed at the end if you win
+YOU_WIN_SPEED = 0.02 # the speed at which the message is printed. Lower is faster since it is the time slept between prints.
+# if you want to rename any elements for whatever reason, or edit what the correct answers are, feel free to do so below.
 ELEMENTS = (
     "1 Hydrogen H",
     "2 Helium He",
@@ -130,6 +131,7 @@ ELEMENTS = (
     "118 Oganesson Og"
 )
 
+# you win message
 def you_win():
     partial = ""
     for i in YOU_WIN_MSG:
