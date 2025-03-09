@@ -9,3 +9,4 @@ For example: 1 Hydrogen H
 - To modify settings, modify the python file to your desires
 - The program will time you and display your time at the end. Have fun, and speedrun it if you want!
 - Turn on hardcore mode to reset back to Hydrogen every time you mess up
+- To quit, press `ctrl+C`
