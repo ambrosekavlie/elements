@@ -140,6 +140,7 @@ def you_win():
         time.sleep(YOU_WIN_SPEED)
 
 if __name__ == "__main__":
+    time1 = time.time()
     os.system("clear")
     i = START_ELEMENT - 1
     print(f"You are at element {i+1}.")
@@ -160,4 +161,8 @@ if __name__ == "__main__":
                 print("You are at element 1.")
             else:
                 print(f"You are at element {i+1}. The previous element is {ELEMENTS[i-1]}.")
+    time2 = time.time()
+    # get time that the test took
+    time_taken = time2 - time1
     you_win()
+    print(f"\nYou took {time_taken} seconds to complete the test. Good job!")
