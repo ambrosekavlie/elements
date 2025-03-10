@@ -1,5 +1,5 @@
-# highscore tracking file
-src/highscore
+# data and highscore tracking file
+src/data.json
 
 # python stuff
 src/__pycache__/*

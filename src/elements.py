@@ -2,6 +2,7 @@
 # Elements: a small program to make memorizing the elements of the periodic table easy
 
 from constants import *
+import json
 import os
 import time
 
@@ -47,27 +48,29 @@ if __name__ == "__main__":
     # print you win message
     you_win()
     
+    # try to open highscore.json file. If it doesn't exist, make it
+    try:
+        with open("data.json", 'r') as highscore_file:
+            data = json.load(highscore_file)
+    except FileNotFoundError:
+        with open("data.json", 'w') as highscore_file:
+            data = {
+                # time taken + 1 so that it counts as highscore. maybe this can be done less awkwardly but it works
+                "highscore" : time_taken+1
+            }
+            json.dump(data, highscore_file)
+    
     # time and highscore logic below:
     
-    # try and catch, if file doesn't exist just count the score as highscore
-    try:
-        # open file
-        with open("highscore", 'r') as highscore_file:
-            highscore = (float)(highscore_file.read())
-        if time_taken < highscore:
-            # if time taken is less than highscore, set new highscore and print highscore message
-            highscore = time_taken
-            with open("highscore", 'w') as highscore_file:
-                highscore_file.write((str)(highscore))
-            print(f"\nHIGHSCORE! You took {time_taken} seconds to complete the test.")
-        else:
-            # else, print normal message that is not highscore
-            # also print your previos highscore
-            print(f"\nYou took {time_taken} seconds to complete the test. Good job!")
-            print(f"Previous highscore: {highscore}")
-    except FileNotFoundError:
-        # if file not found, print highscore things because t'is first score
-        highscore = time_taken
-        with open("highscore", 'w') as highscore_file:
-            highscore_file.write((str)(highscore))
+    if time_taken < data["highscore"]:
+        # if time taken is less than highscore, set new highscore and print highscore message
+        data["highscore"] = time_taken
+        with open("data.json", 'w') as highscore_file:
+            json.dump(data, highscore_file)
         print(f"\nHIGHSCORE! You took {time_taken} seconds to complete the test.")
+    else:
+        # else, print normal message that is not highscore
+        # also print your previous highscore
+        print(f"\nYou took {time_taken} seconds to complete the test. Good job!")
+        highscore = data["highscore"]
+        print(f"Previous highscore: {highscore}")
