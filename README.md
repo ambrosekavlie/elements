@@ -2,6 +2,7 @@
 A small program to make memorizing the elements of the periodic table easy that I threw together in like 15 minutes
 
 ## Usage
+- Cd into the src directory
 - Run `./elements.py` in the terminal (you may have to run `chmod +x elements.py` first)
 - Type the number, followed by the name and the element symbol for each element in order.
 For example: 1 Hydrogen H
