@@ -14,7 +14,7 @@ def you_win():
         print(partial)
         time.sleep(YOU_WIN_SPEED)
         
-def update_json_data():
+def update_json_data(time_taken: float):
     # try to open highscore.json file. If it doesn't exist, make it
     try:
         with open("data.json", 'r') as highscore_file:
@@ -77,4 +77,4 @@ if __name__ == "__main__":
     you_win()
     
     # update the json data and set new highscore if needed
-    update_json_data()
+    update_json_data(time_taken)
