@@ -2,8 +2,7 @@
 A small program to make memorizing the elements of the periodic table easy that I threw together in like 15 minutes
 
 ## Usage
-- Cd into the src directory
-- Run `./elements.py` in the terminal (you may have to run `chmod +x elements.py` first)
+- Run `./src/elements.py` in the terminal (you may have to run `chmod +x src/elements.py` first)
 - Type the number, followed by the name and the element symbol for each element in order.
 For example: 1 Hydrogen H
 - The program will tell you when you are wrong, and if you are wrong it will send you back a set number of elements and tell you what the correct answer was. This makes memorization very easy.
