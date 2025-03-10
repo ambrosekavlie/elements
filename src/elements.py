@@ -13,6 +13,34 @@ def you_win():
         partial += i
         print(partial)
         time.sleep(YOU_WIN_SPEED)
+        
+def update_json_data():
+    # try to open highscore.json file. If it doesn't exist, make it
+    try:
+        with open("data.json", 'r') as highscore_file:
+            data = json.load(highscore_file)
+    except FileNotFoundError:
+        with open("data.json", 'w') as highscore_file:
+            data = {
+                # time taken + 1 so that it counts as highscore. maybe this can be done less awkwardly but it works
+                "highscore" : time_taken+1
+            }
+            json.dump(data, highscore_file)
+    
+    # time and highscore logic below:
+    
+    if time_taken < data["highscore"]:
+        # if time taken is less than highscore, set new highscore and print highscore message
+        data["highscore"] = time_taken
+        with open("data.json", 'w') as highscore_file:
+            json.dump(data, highscore_file)
+        print(f"\nHIGHSCORE! You took {time_taken} seconds to complete the test.")
+    else:
+        # else, print normal message that is not highscore
+        # also print your previous highscore
+        print(f"\nYou took {time_taken} seconds to complete the test. Good job!")
+        highscore = data["highscore"]
+        print(f"Previous highscore: {highscore}")
 
 if __name__ == "__main__":
     time1 = time.time()
@@ -48,29 +76,5 @@ if __name__ == "__main__":
     # print you win message
     you_win()
     
-    # try to open highscore.json file. If it doesn't exist, make it
-    try:
-        with open("data.json", 'r') as highscore_file:
-            data = json.load(highscore_file)
-    except FileNotFoundError:
-        with open("data.json", 'w') as highscore_file:
-            data = {
-                # time taken + 1 so that it counts as highscore. maybe this can be done less awkwardly but it works
-                "highscore" : time_taken+1
-            }
-            json.dump(data, highscore_file)
-    
-    # time and highscore logic below:
-    
-    if time_taken < data["highscore"]:
-        # if time taken is less than highscore, set new highscore and print highscore message
-        data["highscore"] = time_taken
-        with open("data.json", 'w') as highscore_file:
-            json.dump(data, highscore_file)
-        print(f"\nHIGHSCORE! You took {time_taken} seconds to complete the test.")
-    else:
-        # else, print normal message that is not highscore
-        # also print your previous highscore
-        print(f"\nYou took {time_taken} seconds to complete the test. Good job!")
-        highscore = data["highscore"]
-        print(f"Previous highscore: {highscore}")
+    # update the json data and set new highscore if needed
+    update_json_data()
