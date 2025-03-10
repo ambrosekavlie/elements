@@ -1,2 +1,6 @@
 # highscore tracking file
-highscore
+src/highscore
+
+# python stuff
+src/__pycache__/*
+*.pyc
